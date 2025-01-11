@@ -124,7 +124,7 @@ export async function updateDefaultAccount(accountId) {
       throw new Error("User not found");
     }
 
-    // First, unset any existing default account
+  
     await db.account.updateMany({
       where: {
         userId: user.id,
@@ -133,7 +133,7 @@ export async function updateDefaultAccount(accountId) {
       data: { isDefault: false },
     });
 
-    // Then set the new default account
+
     const account = await db.account.update({
       where: {
         id: accountId,

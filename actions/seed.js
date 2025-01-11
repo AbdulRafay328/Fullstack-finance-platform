@@ -28,12 +28,11 @@ const CATEGORIES = {
   ],
 };
 
-// Helper to generate random amount within a range
+
 function getRandomAmount(min, max) {
   return Number((Math.random() * (max - min) + min).toFixed(2));
 }
 
-// Helper to get random category with amount
 function getRandomCategory(type) {
   const categories = CATEGORIES[type];
   const category = categories[Math.floor(Math.random() * categories.length)];
@@ -54,7 +53,7 @@ export async function seedTransactions() {
       const transactionsPerDay = Math.floor(Math.random() * 3) + 1;
 
       for (let j = 0; j < transactionsPerDay; j++) {
-        // 40% chance of income, 60% chance of expense
+     
         const type = Math.random() < 0.4 ? "INCOME" : "EXPENSE";
         const { category, amount } = getRandomCategory(type);
 
@@ -79,7 +78,7 @@ export async function seedTransactions() {
       }
     }
 
-    // Insert transactions in batches and update account balance
+  
     await db.$transaction(async (tx) => {
       // Clear existing transactions
       await tx.transaction.deleteMany({
